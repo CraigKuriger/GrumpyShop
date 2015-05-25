@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    @category = Category.all
+    @categories = Category.all
+  end
+
+  def categories
+    @categories = Category.all
   end
 end

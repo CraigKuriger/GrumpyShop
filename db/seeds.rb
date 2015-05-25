@@ -10,6 +10,6 @@ Category.create(name: "Other")
 
 Category.all.each do |category|
   4.times do
-    category.products.create(name: Faker::Lorem.words(2).capitalize, description: Faker::Lorem.paragraph(2), image: Faker::Avatar.image, price: Money.new(99.99, "NZD"))
+    category.products.create(name: Faker::Lorem.word.capitalize, description: Faker::Lorem.paragraph(2), image_url: Faker::Avatar.image, price: Money.new(99.99, "NZD"))
   end
 end
