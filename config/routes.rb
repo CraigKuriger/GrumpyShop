@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-root to: 'application#index'
-get '/categories', to: 'application#categories'
+# root to: 'application#index'
+get '/index', to: 'product#index'
+get '/categories', to: 'product#categories'
+get '/categories/:category_id/products', to: 'product#product_list'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
