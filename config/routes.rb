@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-# root to: 'application#index'
-root to: 'category#index'
-get '/index', to: 'category#index'
+root to: 'application#index'
+# root to: 'categories#index'
+# get '/index', to: 'category#index'
 resources :categories
-get '/categories', to: 'category#categories'
-get '/categories/:category_id/products', to: 'category#product_list'
-resources :product
+# get '/categories/category', to: 'categories#category'
+# get '/categories/:category_id/products', to: 'category#product_list'
+resources :products
 
 
 
