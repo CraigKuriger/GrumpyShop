@@ -14,8 +14,14 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>QwertyShop</h1>
-            <p>You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster... You can't be half a Gangster...</p>
-            <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
+            <%if user_signed_in? %>
+                <p>Hello <%=current_user.email%></p>
+                <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
+            <%else%>
+                <p>Hello</p>
+                <p><%= link_to('Sign In/Up', new_user_session_path, class:"btn btn-primary") %></p>
+            <%end%>
+
         </header>
 
         <hr>

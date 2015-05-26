@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-root to: 'application#index'
-
-resources :categories
-
-# get '/categories/:id', to: 'categories#show'
-resources :products
+  devise_for :admins
+  devise_for :users
+  root to: 'application#index'
+  resources :categories, only: [:index, :show]
+  resources :products, only: [:show]
 
 
 
