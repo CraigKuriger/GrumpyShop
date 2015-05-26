@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Categories</title>
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1><%=@category.name%></h1>
+            <p>Hello.</p>
+            <p><a class="btn btn-primary btn-large">Shop Now!</a>
+            </p>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Features</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+            <!-- This is an arrray fool! -->
+            <%@category.products.each do |product| %>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <img src="<%= product.image_url %>" alt="">
+                        <div class="caption">
+                            <h3><%=product.name%></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p>
+                                <p><%= link_to'Buy Now!', product_path(product), class:"btn btn-primary"%>
+                                 <a href="#" class="btn btn-default">More Info</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+</body>
+
+</html>
