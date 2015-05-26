@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: 'application#index'
   resources :categories, only: [:index, :show]
   resources :products, only: [:show]
+  resources :carts
+  resources :cart_products
 
 
 
