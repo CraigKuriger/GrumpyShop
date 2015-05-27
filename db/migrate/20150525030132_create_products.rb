@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :description
       t.float :price
       t.string :image_url
+      t.binary :image
       t.timestamps null: false
     end
   end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   root to: 'application#index'
   resources :categories, only: [:index, :show]
-  resources :products, only: [:index, :show]
+  resources :products#, only: [:index, :show]
 
 post '/cart_products/product/:id', to: 'cart_products#add_product', as: "add_product"
 
