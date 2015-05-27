@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   root to: 'application#index'
   resources :categories, only: [:index, :show]
-  resources :products, only: [:show]
+  resources :products, only: [:index, :show]
   resources :carts
   resources :cart_products
 
