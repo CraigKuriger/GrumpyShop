@@ -1,11 +1,29 @@
 class ProductsController < ApplicationController
 before_filter :authenticate_admin!, only: "index"
+before_filter :authenticate_admin!, only: "new"
+before_filter :authenticate_admin!, only: "edit"
   def index
     @products = Product.all
   end
   def show
+    @product = Product.find(product_params)
+  end
+  def edit
     @product = Product.find(params[:id])
   end
+  def update
+    pp "X" * 40
+    pp params
+    pp "X" * 40
+    pp product_params
+    pp "X" * 40
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to products_path
+    else
+      redirect_to edit_product
+  end
+end
   def destroy
     @product = Product.destroy(params[:id])
     redirect_to products_path
@@ -14,15 +32,15 @@ before_filter :authenticate_admin!, only: "index"
     @product = Product.new
   end
   def create
-  @product = Message.new(product_params)
+  @product = Product.new(product_params)
   if @product.save
     redirect_to products_path
   else
-    render 'new'
+    redirect_to new_product
   end
 end
   private
   def product_params
-    params.require(:name).permit(:description, :price, :image_url)
+    params.require(:product).permit(:name, :description, :price, :image_url)
   end
 end
