@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
+  devise_for :admins, controllers: { registrations: "users/registrations" }
   devise_for :users, controllers: { registrations: "users/registrations" }
   root to: 'application#index'
   resources :categories, only: [:index, :show]
   resources :products, only: [:index, :show]
-  resources :carts
-  resources :cart_products
+
+post '/cart_products/product/:id', to: 'cart_products#add_product', as: "add_product"
+
+get '/user/cart', to: 'cart_products#show_cart', as: "show_cart"
+
+post '/user/cart/:id', to: 'cart_products#remove_product', as: "remove_product"
+
+
 
 
 
