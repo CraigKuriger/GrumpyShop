@@ -8,6 +8,12 @@ class CartProductsController < ApplicationController
 
   def show_cart
     @product = current_user.cart.products
+    total
+  end
+
+  def total
+    price_array = current_user.cart.products.map(&:price)
+    @total = price_array.reduce(:+)
   end
 
   def remove_product

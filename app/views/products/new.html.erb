@@ -20,7 +20,10 @@
 
           <%= form_for(@product) do |f| %>
             <div class="field">
-
+              <%= f.label :category %><br>
+              <%= collection_select(:product, :category_id, Category.all, :id, :name, prompt: true) %>
+            </div>
+            <div class="field">
               <%= f.label :name %><br>
               <%= f.text_area :name %>
             </div>
