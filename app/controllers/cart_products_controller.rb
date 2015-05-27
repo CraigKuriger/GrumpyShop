@@ -13,7 +13,7 @@ class CartProductsController < ApplicationController
 
   def total
     price_array = current_user.cart.products.map(&:price)
-    @total = price_array.reduce(:+)
+    @total = price_array.reduce(:+).round(2)
   end
 
   def remove_product

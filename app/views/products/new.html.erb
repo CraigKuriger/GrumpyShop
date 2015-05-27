@@ -33,7 +33,8 @@
             </div>
             <div class="field">
               <%= f.label :price %><br>
-              <%= f.number_field :price %>
+              <%= f.text_field :price, :class => 'price', :value => (number_with_precision(f.object.price, :precision => 2 || 0)) %>
+              <!--Change number_field to text_field when using number_with_precision-->
             </div>
             <div class="field">
               <%= f.label :image_url %><br>
