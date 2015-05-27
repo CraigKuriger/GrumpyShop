@@ -10,7 +10,7 @@ before_filter :authenticate_admin!, only: "index"
     @product = Product.destroy(params[:id])
     redirect_to products_path
   end
-  def new_product
+  def new
     @product = Product.new
   end
   def create
