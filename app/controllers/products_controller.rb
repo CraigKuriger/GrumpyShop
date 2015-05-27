@@ -6,17 +6,12 @@ before_filter :authenticate_admin!, only: "edit"
     @products = Product.all
   end
   def show
-    @product = Product.find(product_params)
+    @product = Product.find(params[:id])
   end
   def edit
     @product = Product.find(params[:id])
   end
   def update
-    pp "X" * 40
-    pp params
-    pp "X" * 40
-    pp product_params
-    pp "X" * 40
     @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to products_path
