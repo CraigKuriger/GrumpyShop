@@ -51,7 +51,33 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
-                </ul>
+                    <li>
+
+                        <%= link_to('Product List', products_path)%>
+                    </li>
+                    </ul>
+                <div class="pull-right">
+                            <%if user_signed_in? %>
+                    <ul class="nav navbar-nav">
+
+                        <li class="navbar-brand">
+                            Hello <%=current_user.username%>
+                        </li>
+
+                        <li >
+                            <%= link_to('Cart', show_cart_path)%>
+                        </li>
+                        <li>
+                            <%= link_to('Sign Out', destroy_user_session_path, method:"delete") %>
+                        </li>
+                        </ul>
+                            <%else%>
+                        <p class="pull-right">
+                        <%= link_to('Sign In/Up', new_user_session_path) %>
+                        </p>
+                    <%end%>
+                </div>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -61,19 +87,15 @@
 <%= yield %>
 
         <!-- Devise Alerts -->
-        <h3>Users</h3>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= button_to('Sign Out', destroy_user_session_path, method:"delete", class:"btn btn-primary" ) %>
-        <%= link_to('Sign In', new_user_session_path, class:"btn btn-primary") %>
-        <%= link_to('Cart', show_cart_path, class:"btn btn-primary")%>
+        <!--<h3>Users</h3>-->
+        <%#= button_to('Sign Out', destroy_user_session_path, method:"delete", class:"btn btn-primary" ) %>
+        <%#= link_to('Sign In', new_user_session_path, class:"btn btn-primary") %>
+        <%#= link_to('Cart', show_cart_path, class:"btn btn-primary")%>
 
-                <h3>Admin</h3>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= button_to('Sign Out', destroy_admin_session_path, method:"delete", class:"btn btn-primary" ) %>
-        <%= link_to('Sign In', new_admin_session_path, class:"btn btn-primary") %>
-        <%= link_to('Product List', products_path, class:"btn btn-primary")%>
+        <!--<h3>Admin</h3>-->
+        <%#= button_to('Sign Out', destroy_admin_session_path, method:"delete", class:"btn btn-primary" ) %>
+        <%#= link_to('Sign In', new_admin_session_path, class:"btn btn-primary") %>
+        <%#= link_to('Product List', products_path, class:"btn btn-primary")%>
 
 <!-- Footer -->
         <footer>

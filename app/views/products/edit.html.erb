@@ -20,7 +20,10 @@
 
           <%= form_for(@product) do |f| %>
             <div class="field">
-
+              <%= f.label :category %><br>
+              <%= collection_select(:product, :category_id, Category.all, :id, :name, prompt: true) %>
+            </div>
+            <div class="field">
               <%= f.label :name %><br>
               <%= f.text_area :name %>
             </div>
@@ -30,8 +33,8 @@
             </div>
             <div class="field">
               <%= f.label :price %><br>
-              <%= f.number_field :price %>
-            </div>
+              <%= f.text_field :price, :class => 'price', :value => (number_with_precision(f.object.price, :precision => 2 || 0)) %>
+              <!--Change number_field to text_field when using number_with_precision-->
             <div class="field">
               <%= f.label :image_url %><br>
               <%= f.url_field :image_url %>

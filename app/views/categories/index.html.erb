@@ -14,8 +14,6 @@
         <header class="jumbotron hero-spacer">
             <h1>Categories</h1>
             <p>Buy something and give me your money.</p>
-            <p><a class="btn btn-primary btn-large">Shop Now!</a>
-            </p>
         </header>
 
         <hr>
@@ -39,8 +37,7 @@
                             <h3><%=category.name%></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p>
-                                <p><%= link_to'Buy Now!', category_path(category), class:"btn btn-primary"%>
-                                 <a href="#" class="btn btn-default">More Info</a>
+                                <p><%= link_to'View Products!', category_path(category), class:"btn btn-primary"%>
                             </p>
                         </div>
                     </div>
