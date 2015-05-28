@@ -13,7 +13,16 @@ class CartProductsController < ApplicationController
 
   def total
     price_array = current_user.cart.products.map(&:price)
-    @total = price_array.reduce(:+).round(2)
+    if price_array.empty?
+       @total = 0
+    else
+       @total = price_array.reduce(:+).round(2)
+    end
+     @total
+    pp "X" * 40
+    pp @total
+    pp @total.class
+    pp @total.inspect
   end
 
   def remove_product

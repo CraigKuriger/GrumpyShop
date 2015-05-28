@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20150526051726) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",               default: "", null: false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "phoner"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150526051726) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150526051726) do
     t.string   "description"
     t.float    "price"
     t.string   "image_url"
+    t.binary   "image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, controllers: { registrations: "users/registrations" }
+devise_for :admins, controllers: { registrations: "admins/registrations" }
   devise_for :users, controllers: { registrations: "users/registrations" }
   root to: 'application#index'
   resources :categories, only: [:index, :show]

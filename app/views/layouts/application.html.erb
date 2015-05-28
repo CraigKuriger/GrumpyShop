@@ -52,8 +52,9 @@
                         <a href="#">Contact</a>
                     </li>
                     <li>
-
+                        <% if admin_signed_in? %>
                         <%= link_to('Product List', products_path)%>
+                        <% end %>
                     </li>
                     </ul>
                 <div class="pull-right">
@@ -70,11 +71,24 @@
                         <li>
                             <%= link_to('Sign Out', destroy_user_session_path, method:"delete") %>
                         </li>
-                        </ul>
+                        <%elsif admin_signed_in? %>
+                    <ul class="nav navbar-nav">
+
+                        <li class="navbar-brand">
+                            Hello <%=current_admin.username%>
+                        </li>
+
+                        <li >
+                            <%= link_to('Cart', show_cart_path)%>
+                        </li>
+                        <li>
+                            <%= link_to('Sign Out', destroy_admin_session_path, method:"delete") %>
+                        </li>
                             <%else%>
-                        <p class="pull-right">
+                        <li>
                         <%= link_to('Sign In/Up', new_user_session_path) %>
-                        </p>
+                        </li>
+                    </ul>
                     <%end%>
                 </div>
 

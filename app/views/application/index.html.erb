@@ -14,9 +14,13 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>QwertyShop</h1>
-            <%if user_signed_in? %>
-                <p>Hello <%=current_user.username%></p>
+            <%if user_signed_in?  %>
+                <p>Hello <%=current_user.username %></p>
                 <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
+            <% elsif admin_signed_in? %>
+                <p>Hello <%=current_admin.username %></p>
+                <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
+
             <%else%>
                 <p>Hello</p>
                 <p><%= link_to('Sign In/Up', new_user_session_path, class:"btn btn-primary") %></p>
