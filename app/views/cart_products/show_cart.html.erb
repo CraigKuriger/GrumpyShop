@@ -12,10 +12,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3>Hello <%=current_user.username%>, you have <%=@product.length%> items in your cart</h3><br>
-                <% if @total %>
-                <h3>Total: $<%=@total%></h3><br>
-                <% else %>
+                <% if @total == 0 %>
                 <h3>Your shopping cart is empty</h3>
+                <% else %>
+                <h3>Total: $<%=@total%></h3><br>
                 <% end %>
             </div>
         </div>

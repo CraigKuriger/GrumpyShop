@@ -19,10 +19,6 @@ class CartProductsController < ApplicationController
        @total = price_array.reduce(:+).round(2)
     end
      @total
-    pp "X" * 40
-    pp @total
-    pp @total.class
-    pp @total.inspect
   end
 
   def remove_product
