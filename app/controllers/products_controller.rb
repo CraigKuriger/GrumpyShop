@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    unless current_user.admin?
+    unless is_admin?
       render status: 403, text: "Permission Denied"
     else
        @products = Product.all
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    unless current_user.admin?
+    unless is_admin?
       render status: 403, text: "Permission Denied"
     else
     @product = Product.find(params[:id])
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    unless current_user.admin?
+    unless is_admin?
       render status: 403, text: "Permission Denied"
     else
     @product = Product.new

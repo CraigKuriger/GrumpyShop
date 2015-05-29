@@ -23,7 +23,7 @@
 
             <%else%>
                 <p>Hello</p>
-                <p><%= link_to('Sign In/Up', new_user_session_path, class:"btn btn-primary") %></p>
+                <p><%= link_to('Sign In / Sign Up', new_user_session_path, class:"btn btn-primary") %></p>
             <%end%>
                 <p class="notice"><%= notice %></p>
                 <p class="alert"><%= alert %></p>
@@ -49,7 +49,7 @@
                         <h3>Official Site</h3>
                         <p>Visit the website of Grumpy Cat.</p>
                         <p>
-                            <a href="http://www.grumpycats.com/" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="http://www.grumpycats.com/" class="btn btn-primary">Go Now...</a> <%= link_to'More Info', categories_path, class:"btn btn-default"%>
                         </p>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <h3>Twitter</h3>
                         <p>See Grumpy's words of wisdom.</p>
                         <p>
-                            <a href="https://twitter.com/realgrumpycat" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="https://twitter.com/realgrumpycat" class="btn btn-primary">Go Now...</a> <%= link_to'More Info', categories_path, class:"btn btn-default"%>
                         </p>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <h3>YouTube</h3>
                         <p>Watch lots of Grumpy videos!</p>
                         <p>
-                            <a href="https://www.youtube.com/channel/UCTzVrd9ExsI3Zgnlh3_btLg" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="https://www.youtube.com/channel/UCTzVrd9ExsI3Zgnlh3_btLg" class="btn btn-primary">Go Now...</a><%= link_to'More Info', categories_path, class:"btn btn-default"%>
                         </p>
                     </div>
                 </div>
@@ -96,11 +96,6 @@
 
         </div>
         <!-- /.row -->
-
         <hr>
-
-
-
 </body>
-
 </html>

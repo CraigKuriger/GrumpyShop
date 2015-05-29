@@ -14,6 +14,9 @@ Category.all.each do |category|
   end
 end
 
+movies = Category.find(name: "Movies")
+movies.products.create(name: "G", description: "f", price: "20.00")
+
 User.create(username: "Craig", firstname: "Craig", lastname: "Kuriger", email: "craig@craig.com", password: "qwerty123", admin: true)
 
 User.create(username: "Mr Burns", firstname: "C Montgomery", lastname: "Burns", email: "mrburns@snp.com", password: "qwerty123", admin: true)
