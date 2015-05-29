@@ -18,9 +18,10 @@ movies = Category.find_by(name: "Movies")
 music = Category.find_by(name: "Music")
 books = Category.find_by(name: "Books")
 other = Category.find_by(name: "Other")
-movies.products.create(name: "Grumpy Cat's Worst Christmas Ever", description: "Worst. Movie. Ever.", image_url: "http://upload.wikimedia.org/wikipedia/en/1/1d/Grumpy_Cat's_Worst_Christmas_Ever_cover.jpg", price: "29.99")
 
-music.products.create(name: "Grumpy Cat's Worst Christmas Ever Soundtrack", description: "Worst. Soundtrack. Ever.", image_url: "http://ecx.images-amazon.com/images/I/81MCRODBhfL._SL1500_.jpg", price: "29.99")
+movies.products.create(name: "Grumpy Cat's Xmas Movie", description: "Worst. Movie. Ever.", image_url: "http://upload.wikimedia.org/wikipedia/en/1/1d/Grumpy_Cat's_Worst_Christmas_Ever_cover.jpg", price: "29.99")
+
+music.products.create(name: "Grumpy Cat Soundtrack", description: "Worst. Soundtrack. Ever.", image_url: "http://ecx.images-amazon.com/images/I/81MCRODBhfL._SL1500_.jpg", price: "29.99")
 
 books.products.create(name: "Grumpy Cat: A Grumpy Book", description: "Worst. Book. Ever.", image_url: "http://ecx.images-amazon.com/images/I/51SszqxmPyL._SY344_BO1,204,203,200_.jpg", price: "29.99")
 

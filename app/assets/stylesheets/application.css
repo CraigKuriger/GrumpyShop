@@ -24,6 +24,11 @@
 
  }
 
+ .thumbnail>img {
+
+    height: 200px;
+ }
+
  .jumbotron {
   background-color: #9598A1;
  }
