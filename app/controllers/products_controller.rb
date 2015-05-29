@@ -13,7 +13,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    unless current_user.admin?
+      render status: 403, text: "Permission Denied"
+    else
     @product = Product.find(params[:id])
+    end
   end
 
   def update
@@ -31,7 +35,11 @@ class ProductsController < ApplicationController
   end
 
   def new
+    unless current_user.admin?
+      render status: 403, text: "Permission Denied"
+    else
     @product = Product.new
+    end
   end
 
   def create
