@@ -11,11 +11,11 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h3>Hello <%=current_user.username%>, you have <%=@product.length%> items in your cart</h3><br>
+                <h1>Hello <%=current_user.username%>, you have <%=@product.length%> items in your cart</h1><br>
                 <% if @total == 0 %>
-                <h3>Your shopping cart is empty</h3>
+                <h1>Your shopping cart is empty</h1>
                 <% else %>
-                <h3>Total: $<%=@total%></h3><br>
+                <h1>Total: $<%=@total%></h1><br>
                 <% end %>
             </div>
         </div>
