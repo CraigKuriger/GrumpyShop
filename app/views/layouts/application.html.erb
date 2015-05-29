@@ -52,9 +52,7 @@
                         <a href="#">Contact</a>
                     </li>
                     <li>
-                        <% if admin_signed_in? %>
-                        <%= link_to('Product List', products_path)%>
-                        <% end %>
+                        <%= link_to('Product List', products_path) if is_admin?%>
                     </li>
                     </ul>
                 <div class="pull-right">
