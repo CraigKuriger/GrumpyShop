@@ -19,6 +19,11 @@
     width: 200px;
  }
 
+ .img_resize {
+    height: 700px;
+
+ }
+
  .jumbotron {
   background-color: #9598A1;
  }
