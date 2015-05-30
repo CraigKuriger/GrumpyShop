@@ -53,3 +53,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :test do
+    gem 'shoulda-matchers', require: false
+end
+
