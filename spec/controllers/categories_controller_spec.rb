@@ -11,7 +11,7 @@ RSpec.describe CategoriesController, type: :controller do
       it {should respond_with(200)}
       it {should render_template(:index)}
 
-      it "should assign @categories to all Categories in DB" do
+      it "should assign @categories to all categories in DB" do
       expect(assigns(:categories)).to eq(Category.all)
     end
 
@@ -25,6 +25,10 @@ RSpec.describe CategoriesController, type: :controller do
 
     it {should respond_with(200)}
     it {should render_template(:show)}
+    it "should assign category with specified id to @category" do
+        expect(assigns(:category)).to eq(@category)
+    end
+
   end
 
 end #End of top
