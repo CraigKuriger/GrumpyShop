@@ -70,30 +70,17 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "#create" do
-
-    context "when the current user is an user" do
+    # context "when the current user is an admin" do
       before do
         @product_params = attributes_for(:product)
-        user = FactoryGirl.create(:user)
-        sign_in user
-        post :create, { product: @product_params }
-      end
-      it {should respond_with(403)}
-    end
-
-    context "when the current user is an admin" do
-
-      before do
-        @product_params = attributes_for(:product)
-        admin = FactoryGirl.create(:admin)
-        sign_in admin
+        # admin = FactoryGirl.create(:admin)
+        # sign_in admin
         post :create, { product: @product_params }
       end
 
       context "if valid params" do
 
         before do
-
           post :create, { product: @product_params }
         end
 
@@ -106,7 +93,7 @@ RSpec.describe ProductsController, type: :controller do
           expect(Product.find_by(@valid_params)).to be_truthy
         end
       end
-    end
+    # end
   end
 
 
