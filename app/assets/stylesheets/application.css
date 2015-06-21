@@ -39,3 +39,8 @@
   padding-bottom: 12px;
   background-color: #9598A1;
  }
+
+ .small-image {
+  margin-top: -7px;
+  max-height: 35px;
+}
