@@ -45,9 +45,15 @@
   max-height: 35px;
 }
 
+.big-image {
+  display: block;
+  margin: auto;
+}
+
 h1, h2, h3, h4, p, a {
   text-decoration: none;
   font-family: Roboto;
+  text-align: center;
 }
 
 .links {
@@ -57,7 +63,7 @@ h1, h2, h3, h4, p, a {
 
 .links:hover {
   text-decoration: none;
-  color: white;
+  color: #D3D4D6;
   -moz-box-shadow: 0 0 50px #D3D4D6; 
   -webkit-box-shadow: 0 0 50px #D3D4D6; 
   box-shadow: 0 0 50px #D3D4D6;   
@@ -80,7 +86,7 @@ h1, h2, h3, h4, p, a {
 
 .btn-primary:hover {
   color: black;
-  background-color: white;
+  background-color: #D3D4D6;
   /*background-color: #EB5015;*/
   border-color: black;
 }
