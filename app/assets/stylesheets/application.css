@@ -44,3 +44,43 @@
   margin-top: -7px;
   max-height: 35px;
 }
+
+h1, h2, h3, h4, p, a {
+  text-decoration: none;
+  font-family: Roboto;
+}
+
+.links {
+  text-decoration: none;
+  color: black;
+}
+
+.links:hover {
+  text-decoration: none;
+  color: white;
+  -moz-box-shadow: 0 0 50px #D3D4D6; 
+  -webkit-box-shadow: 0 0 50px #D3D4D6; 
+  box-shadow: 0 0 50px #D3D4D6;   
+}
+.spin:hover {
+  cursor: default;
+  transform: rotate(360deg);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+
+.btn-primary {
+  display: block;
+  color: white;
+  background-color: black;
+  border-color: black;
+  width: 150px;
+  margin: auto;
+}
+
+.btn-primary:hover {
+  color: black;
+  background-color: white;
+  /*background-color: #EB5015;*/
+  border-color: black;
+}

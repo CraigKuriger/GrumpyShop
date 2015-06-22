@@ -14,6 +14,7 @@
 
     <!-- Custom CSS -->
     <link href="../assets/stylesheets/heroic-features.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -38,12 +39,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
                     <li>
                         <%= link_to'Categories', categories_path%>
                     </li>
@@ -80,6 +75,19 @@
         </div>
         <!-- /.container -->
     </nav>
+
+    <% if flash[:notice] %>
+        <div class="alert alert-success">
+            <button class="close" data-dismiss="alert">x</button>
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <% if flash[:alert] %>
+        <div class="alert alert-error">
+            <button class="close" data-dismiss="alert">x</button>
+            <%= flash[:alert] %>
+        </div>
+    <% end %>
 
 <%= yield %>
 

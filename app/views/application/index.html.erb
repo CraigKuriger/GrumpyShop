@@ -14,19 +14,7 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <%= image_tag 'GrumpyShop.png', :class => "big-image" %>
-            <%if user_signed_in?  %>
-                <h3>Hello <%=current_user.username %></h3><br>
-                <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
-            <% elsif admin_signed_in? %>
-                <p>Hello <%=current_admin.username %></p>
-                <p><%= link_to'Categories', categories_path, class:"btn btn-primary btn-large"%></p>
-
-            <%else%>
-                <p>Hello</p>
-                <p><%= link_to('Sign In / Sign Up', new_user_session_path, class:"btn btn-primary") %></p>
-            <%end%>
-                <p class="notice"><%= notice %></p>
-                <p class="alert"><%= alert %></p>
+  <p><%= link_to'Shop Now', categories_path, class:"btn btn-primary btn-large"%></p>
         </header>
 
         <hr>
@@ -43,55 +31,63 @@
         <div class="row text-center">
 
             <div class="col-md-3 col-sm-6 hero-feature">
+                <a class="links" href="http://www.grumpycats.com/">
                 <div class="thumbnail">
-                    <img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xtf1/v/t1.0-9/1977329_658812200821187_677266368_n.jpg?oh=dd0b8556dbca9a8391a91aaf4fa27c65&oe=560C4C05&__gda__=1443595577_dfead2bb54a01bec793fb50c9fcac0c5" alt="" class="img-circle pictures">
+                    <img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xtf1/v/t1.0-9/1977329_658812200821187_677266368_n.jpg?oh=dd0b8556dbca9a8391a91aaf4fa27c65&oe=560C4C05&__gda__=1443595577_dfead2bb54a01bec793fb50c9fcac0c5" alt="" class="img-circle pictures links spin">
                     <div class="caption">
-                        <h3>Official Site</h3>
-                        <p>Visit the website of Grumpy Cat.</p>
+                        <h3 class="links">Official Site</h3>
+                        <p class="links">Visit the website of Grumpy Cat.</p>
                         <p>
-                            <a href="http://www.grumpycats.com/" class="btn btn-primary">Go Now...</a> <%= link_to'More Info', categories_path, class:"btn btn-default"%>
+                            <a href="http://www.grumpycats.com/" class="btn btn-primary">Go Now...</a> 
                         </p>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
+                <a class="links" href="http://www.grumpycats.com/">
                 <div class="thumbnail">
-                    <img src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/p206x206/11329857_859783734057365_55970164268843398_n.jpg?oh=312d36fe7280eed46a313e01408c4279&oe=55BF5F39" alt="" class="img-circle pictures">
+                    <img src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/p206x206/11329857_859783734057365_55970164268843398_n.jpg?oh=312d36fe7280eed46a313e01408c4279&oe=55BF5F39" alt="" class="img-circle pictures links spin">
                     <div class="caption">
-                        <h3>Facebook</h3>
-                        <p>Follow the worlds most influential cat!</p>
+                        <h3 class="links">Facebook</h3>
+                        <p class="links">Follow the worlds most influential cat!</p>
                         <p>
-                            <a href="https://www.facebook.com/TheOfficialGrumpyCat" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="https://www.facebook.com/TheOfficialGrumpyCat" class="btn btn-primary">Go Now!</a>
                         </p>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
+                <a class="links" href="http://www.grumpycats.com/">
                 <div class="thumbnail">
-                    <img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/11011807_855786151123790_4712566400318116641_n.jpg?oh=03fe1cbf6ba4442c9777b58d9c2fc28e&oe=55FE67D0&__gda__=1442982586_6e4c60bc4be0db447b07cc7868a170d5" alt="" class="img-circle pictures">
+                    <img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/11011807_855786151123790_4712566400318116641_n.jpg?oh=03fe1cbf6ba4442c9777b58d9c2fc28e&oe=55FE67D0&__gda__=1442982586_6e4c60bc4be0db447b07cc7868a170d5" alt="" class="img-circle pictures links spin">
                     <div class="caption">
-                        <h3>Twitter</h3>
-                        <p>See Grumpy's words of wisdom.</p>
+                        <h3 class="links">Twitter</h3>
+                        <p class="links">See Grumpy's words of wisdom.</p>
                         <p>
-                            <a href="https://twitter.com/realgrumpycat" class="btn btn-primary">Go Now...</a> <%= link_to'More Info', categories_path, class:"btn btn-default"%>
+                            <a href="https://twitter.com/realgrumpycat" class="btn btn-primary">Go Now...</a>
                         </p>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
+                <a class="links" href="http://www.grumpycats.com/">
                 <div class="thumbnail">
-                    <img src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10659215_737215902980816_1921557444760703373_n.jpg?oh=386ff82777c5d45ad0f1fb4defe17c91&oe=55C75FC9" alt="" class="img-circle pictures">
+                    <img src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10659215_737215902980816_1921557444760703373_n.jpg?oh=386ff82777c5d45ad0f1fb4defe17c91&oe=55C75FC9" alt="" class="img-circle pictures links spin">
                     <div class="caption">
-                        <h3>YouTube</h3>
-                        <p>Watch lots of Grumpy videos!</p>
+                        <h3 class="links">YouTube</h3>
+                        <p class="links">Watch lots of Grumpy videos!</p>
                         <p>
-                            <a href="https://www.youtube.com/channel/UCTzVrd9ExsI3Zgnlh3_btLg" class="btn btn-primary">Go Now...</a><%= link_to'More Info', categories_path, class:"btn btn-default"%>
+                            <a href="https://www.youtube.com/channel/UCTzVrd9ExsI3Zgnlh3_btLg" class="btn btn-primary">Go Now...</a>
                         </p>
                     </div>
                 </div>
+                </a>
             </div>
 
         </div>
