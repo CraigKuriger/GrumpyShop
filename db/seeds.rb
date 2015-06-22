@@ -1,4 +1,4 @@
-require 'faker'
+# require 'faker'
 require 'money'
 
 Category.destroy_all

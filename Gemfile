@@ -49,7 +49,7 @@ group :development, :test do
 
 ######Craig Gems######
   gem 'rspec-rails', '~> 3.0'
-  gem 'faker'
+  # gem 'faker'
   gem 'factory_girl_rails'
 end
 
