@@ -64,9 +64,9 @@ h1, h2, h3, h4, p, a {
 .links:hover {
   text-decoration: none;
   color: #D3D4D6;
-  -moz-box-shadow: 0 0 50px #D3D4D6; 
-  -webkit-box-shadow: 0 0 50px #D3D4D6; 
-  box-shadow: 0 0 50px #D3D4D6;   
+  -moz-box-shadow: 0 0 100px #D3D4D6; 
+  -webkit-box-shadow: 0 0 100px #D3D4D6; 
+  box-shadow: 0 0 100px #D3D4D6;   
 }
 .spin:hover {
   cursor: default;
@@ -80,8 +80,14 @@ h1, h2, h3, h4, p, a {
   color: white;
   background-color: black;
   border-color: black;
-  width: 150px;
+  width: 160px;
   margin: auto;
+}
+
+.btn-default {
+  display: block;
+  margin: auto;
+  width: 160px;
 }
 
 .btn-primary:hover {
@@ -90,3 +96,9 @@ h1, h2, h3, h4, p, a {
   /*background-color: #EB5015;*/
   border-color: black;
 }
+
+.align-left {
+  text-align: left;
+}
+
+

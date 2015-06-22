@@ -24,11 +24,12 @@
             <% @categories.each do |category| %>
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11391342_867507243285014_6569955569849357941_n.jpg?oh=90f21ce05f2073d730c642745b55533f&oe=562F8BFB" alt="">
+                        <%= link_to category_path(category), class:"links" do %>
+                        <img class="links" src="https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11391342_867507243285014_6569955569849357941_n.jpg?oh=90f21ce05f2073d730c642745b55533f&oe=562F8BFB" alt="">
                         <div class="caption">
                             <h3><%=category.name%></h3>
-                            <p>
-                                <p><%= link_to'View Products!', category_path(category), class:"btn btn-primary"%>
+                        <% end %>
+                                <p><%= link_to'View Products!', category_path(category), class:"btn btn-primary links"%>
                             </p>
                         </div>
                     </div>

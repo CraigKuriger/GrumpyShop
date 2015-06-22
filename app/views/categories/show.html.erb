@@ -12,23 +12,19 @@
             <h1><%=@category.name%></h1>
         </header>
         <hr>
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Latest Features</h3>
-            </div>
-        </div>
         <!-- Page Features -->
         <div class="row text-center">
             <!-- This is an arrray fool! -->
             <%@category.products.each do |product| %>
                 <div class="col-md-3 col-sm-6 hero-feature">
+                    <%= link_to product_path(product), class:"links" do %>
                     <div class="thumbnail">
-                        <img src="<%= product.image_url %>" alt="" class="img_resize">
+                        <img class="links" src="<%= product.image_url %>" alt="" class="img_resize">
                         <div class="caption">
                             <h3><%=product.name%></h3>
                             <p>
-                                <a><%= link_to'More Info', product_path(product), class:"btn btn-primary"%></a>
+                    <% end %>
+                                <a><%= link_to'More Info', product_path(product), class:"btn btn-primary links"%></a>
                             </p>
                         </div>
                     </div>
