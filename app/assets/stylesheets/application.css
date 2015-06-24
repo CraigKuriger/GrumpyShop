@@ -20,17 +20,16 @@
  }
 
  .thumbnail>img {
+    height: 200px;
+ }
 
+  .thumbnail>a>img {
     height: 200px;
  }
 
  .jumbotron {
     background-color: #9598A1;
  }
-
- /*.jumbo-home {
-    max-height: 330px;
- }*/
 
  h1 {
   display: block;
