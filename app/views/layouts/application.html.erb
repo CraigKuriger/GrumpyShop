@@ -47,12 +47,12 @@
                         <%= link_to('Product List', products_path) if is_admin?%>
                     </li>
                     </ul>
-                <div class="pull-right">
+                <div>
                             <%if user_signed_in? %>
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav navbar-right">
 
-                        <li class="navbar-brand">
-                            Hello <%=current_user.username%>
+                        <li>
+                            <a>Hello <%=current_user.username%></a>
                         </li>
 
                         <li >

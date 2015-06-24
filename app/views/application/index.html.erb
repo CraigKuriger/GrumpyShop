@@ -13,7 +13,8 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <%= image_tag 'GrumpyShop.png', :class => "big-image" %>
+            
+            <%= link_to (image_tag "GrumpyShop.png", :class => "big-image"), categories_path%>
         <p><%= link_to'Shop Now', categories_path, class:"btn btn-primary btn-large links"%></p>
         </header>
 

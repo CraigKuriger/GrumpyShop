@@ -46,8 +46,6 @@
 }
 
 .big-image {
-  /*display: block;*/
-  
   display: inline-block;
   margin: auto;
   height: auto;
