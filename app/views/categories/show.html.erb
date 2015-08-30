@@ -5,16 +5,16 @@
 <title>GrumpyShop</title>
 </head>
 <body>
-    <!-- Page Content -->
+
     <div class="container">
-        <!-- Jumbotron Header -->
+
         <header class="jumbotron hero-spacer">
             <h1><%=@category.name%></h1>
         </header>
         <hr>
-        <!-- Page Features -->
+
         <div class="row text-center">
-            <!-- This is an arrray fool! -->
+
             <%@category.products.each do |product| %>
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <%= link_to product_path(product), class:"links" do %>
@@ -31,7 +31,7 @@
                 </div>
             <% end %>
         </div>
-        <!-- /.row -->
+
         <hr>
 </body>
 </html>
