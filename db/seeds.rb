@@ -1,4 +1,3 @@
-# require 'faker'
 require 'money'
 
 Category.destroy_all
@@ -7,12 +6,6 @@ Category.create(name: "Movies")
 Category.create(name: "Music")
 Category.create(name: "Books")
 Category.create(name: "Other")
-
-# Category.all.each do |category|
-#   4.times do
-#     category.products.create(name: Faker::Lorem.word.capitalize, description: Faker::Lorem.paragraph(2), image_url: Faker::Avatar.image, price: Money.new(9999, "NZD"))
-#   end
-# end
 
 movies = Category.find_by(name: "Movies")
 music = Category.find_by(name: "Music")
@@ -29,9 +22,9 @@ books.products.create(name: "Grumpy Cat's Guide To Life", description: "Worst. B
 
 books.products.create(name: "Grumpy Cat: 2016 Calendar", description: "Worst. Calendar. Ever.", image_url: "http://ecx.images-amazon.com/images/I/617wmIWgfKL._SX258_BO1,204,203,200_.jpg", price: "29.99")
 
+books.products.create(name: "Grumpy Cat: No It All", description: "Everything you need to NO!", image_url: "http://ecx.images-amazon.com/images/I/812HelsCyhL.jpg", price: "29.99")
+
 other.products.create(name: "Grumpy Cat Plush Toy", description: "You can't be half a Gangster", image_url: "http://ecx.images-amazon.com/images/I/51NNW9ZbHaL._SY300_.jpg", price: "29.99")
-
-
 
 User.create(username: "Craig", firstname: "Craig", lastname: "Kuriger", email: "craig@craig.com", password: "qwerty123", admin: true)
 
