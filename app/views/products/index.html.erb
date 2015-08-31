@@ -23,7 +23,7 @@
                     <img src="<%=product.image_url%>" alt="">
                     <div class="caption">
                         <h3><%=product.name%></h3>
-                        <p><%=product.category.class%></p>
+                        <p><%=product.category.name%></p>
                         <p><%=product.price%></p>
                         <p>
                             <%=link_to "Delete", product_path(product.id), method:"delete", class:"btn btn-primary"%> <%=link_to "Edit", edit_product_path(product.id), method:"get", class:"btn btn-default"%>
@@ -35,9 +35,5 @@
         </div>
 
         <hr>
-
-
-
 </body>
-
 </html>
