@@ -3315,3 +3315,347 @@ Redirected to http://test.host/products
 Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
   [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" LIMIT 1
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36m (132.0ms)[0m  [1mDROP DATABASE IF EXISTS "qwertyshop_test"[0m
+  [1m[35m (367.9ms)[0m  CREATE DATABASE "qwertyshop_test" ENCODING = 'unicode'
+  [1m[36mSQL (1.9ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (15.5ms)[0m  CREATE TABLE "admins" ("id" serial primary key, "username" character varying DEFAULT '' NOT NULL, "firstname" character varying, "lastname" character varying, "phoner" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (2.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_admins_on_email" ON "admins" USING btree ("email")[0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX  "index_admins_on_reset_password_token" ON "admins" USING btree ("reset_password_token")
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "cart_products" ("id" serial primary key, "cart_id" integer, "product_id" integer) [0m
+  [1m[35m (1.9ms)[0m  CREATE  INDEX  "index_cart_products_on_cart_id" ON "cart_products" USING btree ("cart_id")
+  [1m[36m (1.8ms)[0m  [1mCREATE  INDEX  "index_cart_products_on_product_id" ON "cart_products" USING btree ("product_id")[0m
+  [1m[35m (3.3ms)[0m  CREATE TABLE "carts" ("id" serial primary key, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (5.5ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "image_url" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (7.3ms)[0m  CREATE TABLE "products" ("id" serial primary key, "category_id" integer, "name" character varying, "description" character varying, "price" float, "image_url" character varying, "image" bytea, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX  "index_products_on_category_id" ON "products" USING btree ("category_id")[0m
+  [1m[35m (4.8ms)[0m  CREATE TABLE "users" ("id" serial primary key, "username" character varying DEFAULT '' NOT NULL, "firstname" character varying, "lastname" character varying, "phone" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp, "admin" boolean) 
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150528224100')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150525024656')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150525030132')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150526033102')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150526033146')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150526051704')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150526051726')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'email@test.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "email@test.com"], ["encrypted_password", "$2a$04$VooJh0vgJMXmXHh7Slon.OKaaIr83Ja16.6ZNWzR1s.GHiwBttYbK"], ["admin", "f"], ["created_at", "2015-09-01 08:41:52.707567"], ["updated_at", "2015-09-01 08:41:52.707567"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 1], ["created_at", "2015-09-01 08:41:52.721074"], ["updated_at", "2015-09-01 08:41:52.721074"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered text template (0.0ms)
+Completed 403 Forbidden in 10ms (Views: 5.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$VJjKFMx4XNvG7x4CiabSXuEcpdC2mpUUUmFWcqBF5YxGaSrb.897y"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.742481"], ["updated_at", "2015-09-01 08:41:52.742481"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 2], ["created_at", "2015-09-01 08:41:52.743971"], ["updated_at", "2015-09-01 08:41:52.743971"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$ybsCoxAKmzQATb/PY/7U7.dFLc3cW9rZTE0.bD4DBDaRGHuRMXLCa"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.762271"], ["updated_at", "2015-09-01 08:41:52.762271"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 3], ["created_at", "2015-09-01 08:41:52.763550"], ["updated_at", "2015-09-01 08:41:52.763550"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$a8yn2vC5y9rzMRVvNQElretkDKVB8Towza8JGvl377MW4dd9TgzxS"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.774218"], ["updated_at", "2015-09-01 08:41:52.774218"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 4], ["created_at", "2015-09-01 08:41:52.776245"], ["updated_at", "2015-09-01 08:41:52.776245"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 4]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:41:52.794463"], ["updated_at", "2015-09-01 08:41:52.794463"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:41:52.806032"], ["updated_at", "2015-09-01 08:41:52.806032"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'email@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "email@test.com"], ["encrypted_password", "$2a$04$I2DIGwmy9LAf7m08pv70j.ta9EOswjCSpOrkn55s.fJycF2Zmp..6"], ["admin", "f"], ["created_at", "2015-09-01 08:41:52.815694"], ["updated_at", "2015-09-01 08:41:52.815694"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 5], ["created_at", "2015-09-01 08:41:52.817088"], ["updated_at", "2015-09-01 08:41:52.817088"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 5]]
+  Rendered text template (0.0ms)
+Completed 403 Forbidden in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$TZ6ExvGFmbRQYubITXYD8uCuZFDiC1Pdm21diEeKzNvg/uaA4AYdO"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.830021"], ["updated_at", "2015-09-01 08:41:52.830021"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 6], ["created_at", "2015-09-01 08:41:52.831980"], ["updated_at", "2015-09-01 08:41:52.831980"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  Rendered products/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$2keK7zRR1HEY6luRyMrEBOc1P5hcGxr3.Z.ImkIdfJKiYkqX8ETiq"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.844459"], ["updated_at", "2015-09-01 08:41:52.844459"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 7], ["created_at", "2015-09-01 08:41:52.845744"], ["updated_at", "2015-09-01 08:41:52.845744"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 7]]
+  Rendered products/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$PZxA/19Pme3DtuOV4EYMAu2RJQEcDCphgpVKXHq2NYxhRcVUnmaVW"], ["admin", "t"], ["created_at", "2015-09-01 08:41:52.855853"], ["updated_at", "2015-09-01 08:41:52.855853"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 8], ["created_at", "2015-09-01 08:41:52.857522"], ["updated_at", "2015-09-01 08:41:52.857522"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 8]]
+  Rendered products/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:41:52.868829"], ["updated_at", "2015-09-01 08:41:52.868829"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:41:52.873258"], ["updated_at", "2015-09-01 08:41:52.873258"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:41:52.879257"], ["updated_at", "2015-09-01 08:41:52.879257"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:41:52.882608"], ["updated_at", "2015-09-01 08:41:52.882608"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."name" = $1 LIMIT 1[0m  [["name", "test"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:41:52.890548"], ["updated_at", "2015-09-01 08:41:52.890548"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:41:52.893652"], ["updated_at", "2015-09-01 08:41:52.893652"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'email@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "email@test.com"], ["encrypted_password", "$2a$04$nGyntatJzAgO3zs6zY2Xku6U.IRSPXh38snTyzaXFigjHZ9vtbuB2"], ["admin", "f"], ["created_at", "2015-09-01 08:42:15.708580"], ["updated_at", "2015-09-01 08:42:15.708580"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 9], ["created_at", "2015-09-01 08:42:15.766987"], ["updated_at", "2015-09-01 08:42:15.766987"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 9]]
+  Rendered text template (0.0ms)
+Completed 403 Forbidden in 8ms (Views: 4.0ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$K5gJtoOVKthIhk2k01zoo.XYDuKciRkZEhTnUMoYn74/n.PRF.1qm"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.785424"], ["updated_at", "2015-09-01 08:42:15.785424"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 10], ["created_at", "2015-09-01 08:42:15.786924"], ["updated_at", "2015-09-01 08:42:15.786924"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 10]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$IUTIxjWH2189vZvroUW4SeN3hdZs0.LLsMHQr1Yi00I/cWV.Ggq/q"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.800890"], ["updated_at", "2015-09-01 08:42:15.800890"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 11], ["created_at", "2015-09-01 08:42:15.802355"], ["updated_at", "2015-09-01 08:42:15.802355"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 11]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$.DiEa39dtDIEmecKjIHakuhk9UatwXdc4QRZ4305Yjo4gg1ait4X2"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.812927"], ["updated_at", "2015-09-01 08:42:15.812927"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 12], ["created_at", "2015-09-01 08:42:15.814234"], ["updated_at", "2015-09-01 08:42:15.814234"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 12]]
+  Rendered products/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:42:15.832085"], ["updated_at", "2015-09-01 08:42:15.832085"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", 9]]
+  Rendered products/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 5ms (Views: 1.8ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:42:15.845431"], ["updated_at", "2015-09-01 08:42:15.845431"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", 10]]
+  Rendered products/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'email@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "email@test.com"], ["encrypted_password", "$2a$04$p9YRG0iqS0IMK0b.y01bG.awqi6r5mNLDkSmbzqvx.PrzrN3zllxC"], ["admin", "f"], ["created_at", "2015-09-01 08:42:15.857780"], ["updated_at", "2015-09-01 08:42:15.857780"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 13], ["created_at", "2015-09-01 08:42:15.859533"], ["updated_at", "2015-09-01 08:42:15.859533"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 13]]
+  Rendered text template (0.0ms)
+Completed 403 Forbidden in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$RBUmDjwDilMDfYF3yfPo2uHTitAlATl7zB84R2HW1gN15qotLx3pC"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.871665"], ["updated_at", "2015-09-01 08:42:15.871665"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 14], ["created_at", "2015-09-01 08:42:15.873020"], ["updated_at", "2015-09-01 08:42:15.873020"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 14]]
+  Rendered products/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$VXMlVuHxVnroRZjKUEOgYuy2yCx//v1N2C2vCjr1GK.OMVkbPn1hq"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.885584"], ["updated_at", "2015-09-01 08:42:15.885584"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 15], ["created_at", "2015-09-01 08:42:15.887267"], ["updated_at", "2015-09-01 08:42:15.887267"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 15]]
+  Rendered products/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "admin@test.com"], ["encrypted_password", "$2a$04$na6PEW0dyY2qepgnDpb6SeVHIOwoV1UUxGUi8ThKzIpVntPkT0ukG"], ["admin", "t"], ["created_at", "2015-09-01 08:42:15.899017"], ["updated_at", "2015-09-01 08:42:15.899017"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "carts" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 16], ["created_at", "2015-09-01 08:42:15.900705"], ["updated_at", "2015-09-01 08:42:15.900705"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 16]]
+  Rendered products/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:42:15.920103"], ["updated_at", "2015-09-01 08:42:15.920103"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:42:15.923314"], ["updated_at", "2015-09-01 08:42:15.923314"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:42:15.929836"], ["updated_at", "2015-09-01 08:42:15.929836"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:42:15.933379"], ["updated_at", "2015-09-01 08:42:15.933379"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."name" = $1 LIMIT 1[0m  [["name", "test"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2015-09-01 08:42:15.942541"], ["updated_at", "2015-09-01 08:42:15.942541"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/products
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"test"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "test"], ["created_at", "2015-09-01 08:42:15.945709"], ["updated_at", "2015-09-01 08:42:15.945709"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/products
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+  [1m[35mProduct Load (0.4ms)[0m  SELECT  "products".* FROM "products" LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

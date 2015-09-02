@@ -1,5 +1,4 @@
 class CartProductsController < ApplicationController
-  # before_filter :only_admin, only: [:add_product]
 
   def add_product
     @cart = current_user.cart
@@ -29,11 +28,5 @@ class CartProductsController < ApplicationController
     order.delete
     redirect_to show_cart_path
   end
-
-# private
-
-#   def only_admin
-#     redirect_to root_url and return unless current_user.admin?
-#   end
 
 end

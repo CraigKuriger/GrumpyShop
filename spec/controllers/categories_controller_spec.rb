@@ -31,4 +31,4 @@ RSpec.describe CategoriesController, type: :controller do
 
   end
 
-end #End of top
+end 

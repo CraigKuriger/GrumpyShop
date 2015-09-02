@@ -10,10 +10,4 @@ class User < ActiveRecord::Base
     Cart.create(user_id: id)
   end
 
-  # ADMIN = "admin"
-
-  def admin?
-    # admin
-    # role == ADMIN
-  end
 end
